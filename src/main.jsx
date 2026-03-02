@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createHashRouter, RouterProvider } from 'react-router-dom'
 
 import Register from './pajes/Register.jsx'
 import Login from './pajes/Login.jsx'
@@ -11,7 +11,7 @@ import ListItem from './pajes/ListItem.jsx'
 import CreateItem from './pajes/CreateItem.jsx'
 import EditItem from './pajes/EditItem.jsx'
 
-const routes = createBrowserRouter([
+const routes = createHashRouter([
   {
     path: '/',
     element: <Auth />,
@@ -27,7 +27,7 @@ const routes = createBrowserRouter([
       { index: true, element: <ListItem /> },
       { path: 'products', element: <ListItem /> },
       { path: 'products/add', element: <CreateItem /> },
-      { path: 'products/edit/:id', element: <EditItem /> } 
+      { path: 'products/edit/:id', element: <EditItem /> }
     ]
   }
 ])

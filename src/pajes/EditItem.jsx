@@ -15,7 +15,6 @@ const EditItem = () => {
   const { id } = useParams()
   const fileInputRef = useRef(null)
 
-  // جيب بيانات المنتج الحالية
   useEffect(() => {
     axios
       .get(`https://vica.website/api/items/${id}`, {
@@ -38,23 +37,6 @@ const EditItem = () => {
         setLoading(false)
       })
   }, [id])
-
-  // تحديث المنتج
-  useEffect(() => {
-    // تأكد إنه المستخدم عدّل شي (مش أول render)
-    if (data.name && data.price && !loading) {
-      const formData = new FormData()
-      formData.append('name', data.name)
-      formData.append('price', Number(data.price))
-      if (data.image) {
-        formData.append('image', data.image)
-      }
-      formData.append('_method', 'PUT')
-
-      // بس بدنا نبعث لما المستخدم يضغط submit
-      // عشان هيك بنحط flag
-    }
-  }, [data])
 
   const handleSubmit = () => {
     const formData = new FormData()
@@ -96,7 +78,6 @@ const EditItem = () => {
     setData((prev) => ({ ...prev, [input.name]: value }))
   }
 
-  // تعريف الـ inputs كـ array
   const inputs = [
     { type: 'text', placeholder: 'Product Name', name: 'name', label: 'Product Name' },
     { type: 'number', placeholder: 'Price', name: 'price', label: 'Price' },
@@ -113,7 +94,6 @@ const EditItem = () => {
         <h2 className='form-title'>Edit Product</h2>
         <div className='product-form'>
           {inputs.map((input, index) => {
-            // لو الـ input نوعه file، اخفيه واعرض البوكس بدله
             if (input.type === 'file') {
               return (
                 <input
@@ -161,7 +141,10 @@ const EditItem = () => {
         {currentImage ? (
           <img src={currentImage} alt='Product' className='preview-img' />
         ) : (
-          <img src='/Upload.png' alt='Upload' />
+          <img
+            src={`${import.meta.env.BASE_URL}Upload.png`}
+            alt='Upload'
+          />
         )}
       </div>
     </div>

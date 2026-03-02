@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import './NavBar.css'
+
 const NavBar = ({ title, row, logout, titlespan }) => {
   return (
     <nav>
@@ -15,7 +16,10 @@ const NavBar = ({ title, row, logout, titlespan }) => {
               <NavLink to={item.link} key={index}>
                 <div className='row-border'>
                   <div className='nav-item'>
-                    <img src={item.image} alt={item.discraption} />
+                    <img
+                      src={item.image}
+                      alt={item.discraption}
+                    />
                     <p>{item.discraption}</p>
                   </div>
                 </div>
@@ -25,12 +29,15 @@ const NavBar = ({ title, row, logout, titlespan }) => {
         </div>
 
         <button className='logout' onClick={logout}>
-          <img src='/assets/img/logout.jpg' alt='' />
+          <img
+            src={`${import.meta.env.BASE_URL}assets/img/logout.jpg`}
+            alt='Logout'
+          />
           Logout
         </button>
       </div>
     </nav>
   )
 }
-export default NavBar
 
+export default NavBar

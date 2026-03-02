@@ -2,12 +2,12 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import './ListItiem.css'
 import { useNavigate } from 'react-router-dom'
-import DeleteModal from '../Components/DeleteModal/DeleteModal'  //  استورد الـ Modal
+import DeleteModal from '../Components/DeleteModal/DeleteModal'
 
 const ListItem = () => {
   const [items, setItems] = useState([])
-  const [popDelete, setPopDelete] = useState(false)  //  state للـ modal
-  const [selectedItemId, setSelectedItemId] = useState(null)  //  الـ id المحدد للحذف
+  const [popDelete, setPopDelete] = useState(false)
+  const [selectedItemId, setSelectedItemId] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -28,13 +28,11 @@ const ListItem = () => {
     navigate(`/dashboard/products/edit/${id}`)
   }
 
-  //  لما يضغط على زر Delete
   const showDeleteModal = (id) => {
-    setSelectedItemId(id)  // احفظ الـ id
-    setPopDelete(true)  // اعرض الـ modal
+    setSelectedItemId(id)
+    setPopDelete(true)
   }
 
-  // 👇 لما يأكد الحذف
   const confirmDelete = () => {
     axios
       .delete(`https://vica.website/api/items/${selectedItemId}`, {
@@ -44,11 +42,9 @@ const ListItem = () => {
         }
       })
       .then(() => {
-        // احذف المنتج من الـ state
         setItems(items.filter((item) => item.id !== selectedItemId))
-        console.log('Item deleted successfully')
-        setPopDelete(false)  // اخفي الـ modal
-        setSelectedItemId(null)  // امسح الـ id
+        setPopDelete(false)
+        setSelectedItemId(null)
       })
       .catch((err) => {
         console.log(err)
@@ -56,7 +52,6 @@ const ListItem = () => {
       })
   }
 
-  //  لما يلغي الحذف
   const cancelDelete = () => {
     setPopDelete(false)
     setSelectedItemId(null)
@@ -64,7 +59,6 @@ const ListItem = () => {
 
   return (
     <>
-      {/*  اعرض الـ modal لما popDelete = true */}
       {popDelete && (
         <DeleteModal
           titlePop='Are you sure you want to delete this product?'
@@ -101,14 +95,21 @@ const ListItem = () => {
                       onClick={() => handleEdit(item.id)}
                       title='Edit'
                     >
-                      <img src='/assets/img/pencil-write.png' alt='Edit' />
+                      <img
+                        src={`${import.meta.env.BASE_URL}assets/img/pencil-write.png`}
+                        alt='Edit'
+                      />
                     </button>
+
                     <button
                       className='delete-btn'
-                      onClick={() => showDeleteModal(item.id)}  // 👈 اعرض الـ modal
+                      onClick={() => showDeleteModal(item.id)}
                       title='Delete'
                     >
-                      <img src='/assets/img/bin.png' alt='Delete' />
+                      <img
+                        src={`${import.meta.env.BASE_URL}assets/img/bin.png`}
+                        alt='Delete'
+                      />
                     </button>
                   </div>
                 </td>
@@ -122,4 +123,3 @@ const ListItem = () => {
 }
 
 export default ListItem
-

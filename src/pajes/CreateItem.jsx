@@ -6,7 +6,7 @@ import './CreateItem.css'
 const CreateItem = () => {
   const [data, setData] = useState({})
   const navigate = useNavigate()
-  const fileInputRef = useRef(null) //  reference للـ file input
+  const fileInputRef = useRef(null)
 
   useEffect(() => {
     if (data.name && data.price && data.image) {
@@ -30,7 +30,7 @@ const CreateItem = () => {
   }, [data, navigate])
 
   const handleFileClick = () => {
-    fileInputRef.current?.click() //  افتح file picker
+    fileInputRef.current?.click()
   }
 
   return (
@@ -58,7 +58,6 @@ const CreateItem = () => {
             />
           </div>
 
-          {/*  File input مخفي */}
           <input
             ref={fileInputRef}
             type='file'
@@ -81,9 +80,11 @@ const CreateItem = () => {
         </form>
       </div>
 
-      {/*  البوكس اللي بتضغط عليه لرفع الصورة */}
       <div className='img-box' onClick={handleFileClick}>
-        <img src='/assets/img/Upload icon.png' alt='Upload' />
+        <img
+          src={`${import.meta.env.BASE_URL}assets/img/Upload icon.png`}
+          alt='Upload'
+        />
       </div>
     </div>
   )

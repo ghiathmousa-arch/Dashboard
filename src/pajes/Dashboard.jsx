@@ -8,7 +8,7 @@ import LogoutModal from '../Components/LogoutModal/LogoutModal'
 
 const Dashboard = () => {
   const navigate = useNavigate()
-  const location = useLocation() // عشان المسار مهم
+  const location = useLocation()
 
   const [popLogout, setpopLogout] = useState(false)
 
@@ -22,15 +22,24 @@ const Dashboard = () => {
   }
 
   const Navitem = [
-    { discraption: 'Dashboard', image: '/assets/img/dash.jpg', link: '/dashboard' },
-    { discraption: 'Products', image: '/assets/img/product.png', link: '/dashboard/products' }
+    {
+      discraption: 'Dashboard',
+      image: `${import.meta.env.BASE_URL}assets/img/dash.jpg`,
+      link: '/dashboard'
+    },
+    {
+      discraption: 'Products',
+      image: `${import.meta.env.BASE_URL}assets/img/product.png`,
+      link: '/dashboard/products'
+    }
   ]
 
-  const isAddProductPage = location.pathname === '/dashboard/products/add' //  شيك
+  const isAddProductPage = location.pathname === '/dashboard/products/add'
 
   return (
     <div className='layout'>
       <NavBar titlespan='Dash' title='Stack' row={Navitem} logout={show} />
+
       {popLogout && (
         <LogoutModal
           titlePop='Are you sure you want to Logout?'
@@ -38,10 +47,10 @@ const Dashboard = () => {
           onCancel={() => setpopLogout(false)}
         />
       )}
+
       <div className='content'>
         <Header titlePath={isAddProductPage ? 'Add Product' : 'Products'} />
 
-        {/*  اخفي الـ Hero في صفحة Add Product */}
         {!isAddProductPage && (
           <Hero titelHero='Manage Products' textButton='Add Product' to='products/add' />
         )}
