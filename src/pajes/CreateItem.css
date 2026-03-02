@@ -1,0 +1,115 @@
+.add-product-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;  /* 👈 غيرت من center */
+  padding: 30px;
+  gap: 40px;
+}
+
+.form-card {
+  flex: 1;
+  max-width: 600px;
+  color: #202224;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 41px;
+  color: #1a1a1a;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: #f1f4f9;
+  border: 1px solid #d8d8d8;
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4880ff;
+  box-shadow: 0 0 0 3px rgba(72, 128, 255, 0.1);
+}
+
+/* 👇 اخفي الـ file input الأصلي */
+.form-group input[type='file'] {
+  display: none;
+}
+
+.btn-save {
+  background: #4880ff;
+  border: 1px solid #4880ff;
+  width: 124px;
+  height: 34px;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-save:hover {
+  background: #3d6fdd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 128, 255, 0.3);
+}
+
+.btn-save:active {
+  transform: translateY(0);
+}
+
+.img-box {
+  width: 475px;
+  height: 218px;
+  border-radius: 4px;
+  border-style: dashed;
+  background: #ffffff;
+  border: 1px dashed rgba(72, 128, 255, 0.3);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.img-box:hover {
+  border-color: #4880ff;
+  background: #f8f9ff;
+}
+
+.img-box img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  opacity: 0.6;
+}
